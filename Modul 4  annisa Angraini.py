@@ -1,3 +1,4 @@
+#Program Toko Sembako
 print("|-----------------------------------------------|")
 print("|     Selamat datang di Toko Sembako ICHA       |")
 print("|-----------------------------------------------|")
