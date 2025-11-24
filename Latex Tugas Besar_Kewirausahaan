@@ -1,0 +1,394 @@
+\documentclass[conference, a4paper]{IEEEtran}
+
+% ------------------- Packages -------------------
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{graphicx}
+\usepackage{algorithmic}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage{lipsum}
+\usepackage{indentfirst}
+\usepackage{float}
+\usepackage[utf8]{inputenc}
+\usepackage{tabularx}
+\usepackage{geometry}
+\usepackage{enumitem}
+\geometry{margin=1in}
+\usepackage{longtable}
+\usepackage[figurename=Gambar]{caption}
+\renewcommand{\tablename}{Tabel}
+% ------------------- Document -------------------
+\begin{document}
+\title{Panduan Implementasi Kepemimpinan 4.0 Berbasis
+Teknologi AI dan Inklusivitas \textit{Neurodiversity} pada
+\textit{Startup} Digital di Era Industri 4.0}
+\author{
+    Andin Rosita Dewi\textsuperscript{1},
+    Annisa Angraini\textsuperscript{2},
+    Annisa Zein\textsuperscript{3},
+    Egga Difta Olivia\textsuperscript{4} \\
+    \textit{Program Studi Matematika dan Sains Data, Fakultas Matematika dan Ilmu Pengetahuan Alam,} \\
+    \textit{Universitas Andalas}\\
+    \textit{Limau Manis, Pauh, Kota Padang, Sumatera Barat, Indonesia} \\
+    Email: \textsuperscript{1}2310431011\_andin@student.unand.ac.id,
+    \textsuperscript{2}2310431013\_annisa@student.unand.ac.id,\\
+    \textsuperscript{3}2310433011\_annisa@student.unand.ac.id\,
+    \textsuperscript{4}2310432023\_egga@student.unand.ac.id\
+}
+
+\maketitle
+% ------------- Abstracts  -------------
+\begin{abstract}
+Leadership in the Industry 4.0 era requires the ability to adapt to technological developments and changes in modern work practices. This study aims to design a 4.0 leadership guide that can be applied to technology startups. The design combines three main aspects, namely remote work strategies, collaboration between humans and artificial intelligence (AI), and the implementation of a work environment that is open to individuals with diverse ways of thinking (neurodiversity). The methods used include literature studies and analysis of several examples of successful technology startups. The results of the study show that effective leadership in the digital era requires the wise use of technology, data-driven decision making, and the development of a work culture that values diversity. This guide is expected to serve as a reference for startup leaders in creating an adaptive, creative, and sustainable work environment in the future.
+
+\vspace{0.5em}
+\textbf{\textit{Keywords—}} Leadership 4.0, Artificial Intelligence, Neurodiversity, Digital Startup.
+\end{abstract}
+
+\vspace{0.5em}
+\renewcommand{\abstractname}{Abstrak}
+\begin{abstract}
+Kepemimpinan di era Industri 4.0 menuntut kemampuan untuk beradaptasi dengan perkembangan teknologi dan perubahan cara kerja yang modern. Studi ini bertujuan untuk merancang panduan kepemimpinan 4.0 yang dapat diterapkan pada startup teknologi. Rancangan ini menggabungkan tiga aspek utama, yaitu strategi remote work, kolaborasi antara manusia dan artificial intelligence (AI), serta penerapan lingkungan kerja yang terbuka bagi individu dengan beragam cara berpikir (neurodiversity). Metode yang digunakan meliputi studi literatur dan analisis terhadap beberapa contoh startup teknologi yang sukses. Hasil penelitian menunjukkan bahwa kepemimpinan yang efektif di era digital memerlukan pemanfaatan teknologi secara bijak, pengambilan keputusan berbasis data, serta pembangunan budaya kerja yang menghargai keberagaman. Panduan ini diharapkan dapat menjadi acuan bagi para pemimpin startup dalam menciptakan lingkungan kerja yang adaptif, kreatif, dan berkelanjutan di masa depan.
+
+\vspace{0.5em}
+\textbf{\textit{Kata Kunci—}} Kepemimpinan 4.0, Kecerdasan Buatan, \textit{Neurodiversity}, \textit{Startup} Digital.
+\end{abstract}
+% ----------- Start Two Column Content -----------
+% Pendahuluan
+\section{Pendahuluan}
+Perkembangan pesat Industri 4.0 telah mengubah tatanan bisnis dan ekonomi global dengan menggabungkan teknologi digital, fisik, dan biologis. Fenomena ini ditandai dengan munculnya teknologi seperti \textit{Internet of Things} (IoT), \textit{artificial intelligence} (AI), \textit{big data analytics}, dan \textit{cyber-physical systems} yang mempengaruhi cara perusahaan beroperasi, berinovasi, serta berinteraksi dengan lingkungan bisnisnya \cite{r1}. Perusahaan tidak lagi menggunakan cara tradisional, penerapan teknologi digital menjadi suatu keharusan untuk mempertahankan keberlangsungan dan daya saing yang semakin cepat berubah\cite{r2}.
+
+Di tengah perubahan ini, \textit{startup} berperan penting sebagai penggerak inovasi dan pendorong transformasi ekonomi digital. Namun, juga menghadapi banyak tantangan besar dalam menghadapi kompleksitas era Industri 4.0. Keterbatasan sumber daya, pasar yang sulit diprediksi, dan kebutuhan untuk selalu beradaptasi dengan kemajuan teknologi sering kali menjadi hambatan utama bagi perkembangan \textit{startup}. Kreiterling \cite{r3} menegaskan bahwa keberhasilan \textit{startup} di dunia digital sangat bergantung pada kemampuan \textit{startup} dalam mengelola inovasi, memanfaatkan data, serta membangun model bisnis yang fleksibel di lingkungan yang kompetitif dan terus berubah.
+
+Model kepemimpinan bisa menyeimbangkan pemanfaatan teknologi dengan nilai-nilai kemanusian, serta membangun kerja sama yang kuat di antara berbagai bidang, sehingga mampu mengatasi tantangan tersebut. Heriansyah \cite{r4} menekankan bahwa pemimpin di era Industri 4.0 harus memiliki literasi digital, kecerdasan emosional, dan kemampuan merancang strategi untuk mendukung pembelajaran \textit{startup} serta mendorong inovasi yang berkelanjutan.
+Pentingnya untuk mempelajari Kepemimpinan 4.0 semakin meningkat karena transformasi digital tidak hanya tentang menggunakan teknologi, tetapi juga mengubah nilai, budaya, dan perilaku \textit{startup}. Kesenjangan antara kemajuan teknologi dan kesiapan sumber daya manusia sering kali menjadi penghambat utama keberhasilan digitalisasi. Menurut Balahurovska \cite{r5}, kepemimpinan menjadi suatu hal yang penting dalam memastikan proses transformasi berjalan dengan efektif melalui peningkatan kolaborasi, komunikasi, dan fokus pada inovasi. Oleh karena itu, memahami karakteristik dan kemampuan kepemimpinan yang sesuai dengan tuntutan era digital menjadi langkah strategis untuk memastikan keberlanjutan organisasi, terutama bagi \textit{startup} yang bergerak cepat dan menghadapi banyak tantangan.
+
+Studi ini bertujuan untuk menganalisis peran dan karakteristik Kepemimpinan 4.0 dalam menghadapi tantangan \textit{startup} di era industri 4.0. Fokus dari studi ini untuk mengidentifikasi kemampuan kepemimpinan digital yang berkontribusi terhadap inovasi, kemampuan adaptasi, serta keberlanjutan bisnis. Dengan demikian, hasil studi diharapkan tidak hanya memperkaya literatur mengenai kepemimpinan digital, tetapi juga memberikan wawasan praktis bagi para pelaku \textit{startup} dalam membangun strategi kepemimpinan yang efektif untuk menghadapi era disrupsi.
+
+\section{Tinjauan Pustaka}
+\subsection{Evolusi Model Kepemimpinan}
+Perkembangan kepemimpinan dari masa ke masa menunjukkan bahwa pandangan kita terhadap seorang pemimpin terus berubah seiring berjalannya waktu. Awalnya, kepemimpinan dianggap hal suatu bawaan, jadi hanya orang tertentu yang memiliki bakat untuk memimpin. Namun, para peneliti mulai menyadari bahwa kepemimpinan tidak hanya bergantung pada sifat bawaan, tetapi juga dipengaruhi oleh cara berinteraksi, perilaku, dan kemampuan menyesuaikan diri dengan kondisi sekitarnya. Perkembangan teori kepemimpinan terjadi secara bertahap. Mulai dari teori sifat, teori perilaku, hingga teori situasional yang menyatakan bahwa model kepemimpinan yang efektif bergantung pada kondisi\cite{r6}.
+
+Seiring memasuki era modern, model kepemimpinan semakin beragam dan menekankan keterlibatan anggota tim. Teori \textit{servant leadership}, dan \textit{authentic leadership} mulai sering dibahas karena dianggap relevan untuk \textit{startup} yang dinamis dan membutuhkan inovasi yang cepat. Model kepemimpinan ini mendorong pemimpin untuk mampu menginspirasi, membangun kepercayaan dan peduli terhadap kesejahteraan anggota tim \cite{r7}. 
+
+Perkembangan dunia yang semakin digital membuat model kepemimpinan terus beradaptasi. \textit{Startup} membutuhkan pemimpin yang memahami teknologi, mampu berpikir cepat, dan fleksibel menghadapi perubahan. Oleh karena itu, model kepemimpinan modern menggabungkan kemampuan berinteraksi dengan orang lain seperti empati, komunikasi, dan kerja sama, serta memanfaatkan teknologi secara efektif. 
+
+\subsection{Studi Kasus: Kesuksesan \textit{Startup} Teknologi \textit{Halodoc}}
+Dalam era industri 4.0, \textit{startup} teknologi menjadi cara paling nyata untuk mewujudkan model kepemimpinan 4.0. Pemimpin dengan model kepemimpinan 4.0 harus mampu menyatukan antara teknologi, rasa empati terhadap manusia, serta kemampuan beradaptasi dalam menghadapi perubahan digital. Berdasarkan penelitian sebelumnya menunjukkan bahwa keberhasilan \textit{startup} bukan hanya karena perubahan teknologi, melainkan pemimpin yang mampu membangun budaya kerja dengan baik. Model kepemimpinan tersebut terlihat pada \textit{startup} Halodoc yang berhasil memimpin transformasi layanan kesehatan digital melalui penerapan teknologi berbasis data.
+
+Sejalan dengan hal tersebut, penelitian menunjukkan bahwa inovasi terbuka (\textit{Open Innovation}) menjadi salah satu faktor utama dalam mendorong transformasi digital, karena mampu menciptakan kolaborasi antar sektor-sektor yang melibatkan pemerintah, industri dan masyarakat untuk memperluas akses layanan kesehatan\cite{r8}. Halodoc mengadopsi pendekatan ini bekerja sama dengan Kementrian Kesehatan dan sejumlah rumah sakit untuk mengembangkan \textit{telemedicine} (layanan Kesehatan jarak jauh yang memanfaatkan teknologi), sehingga dapat menjangkau Masyarakat di daerah terpencil dan meningkatkan aksesibilitas layanan.
+
+Selanjutnya, hasil penelitian lainnya menegaskan bahwa pertumbuhan inovasi kewirausahaan digital di sektor Kesehatan Indonesia yang didorong oleh kebijakan pemerintah serta perkembangan teknologi yang pesat\cite{r9}. Dalam konteks ini, Halodoc menjadi contoh \textit{startup} yang berhasil memadukan inovasi, investasi dan dukungan regulasi untuk membangun ekosistem kesehatan digital yang efisien dan berkelanjutan. 
+
+\subsection{\textit{Best practices remote work}}
+Perkembangan \textit{remote work} semakin berkembang pesat sejak pandemi dan membuat \textit{startup} harus menyesuaikan cara kerja karyawan.\textit{“COVID-19 has had major impacts on population and individual health and has had a transformational impact on the widespread adoption of remote working by both employers and employees”}\cite{r14}. Hal ini menunjukkan bahwa \textit{remote work} di \textit{startup} tidak hanya bersifat teknis, tetapi juga berpengaruh pada kenyamanan, kesehatan, dan pola kerja karyawannya. Oleh karena itu, \textit{startup} perlu menyediakan akses teknologi yang bagus, aturan kerja yang jelas, dan memastikan kondisi karyawan supaya \textit{remote work} tetap stabil dan efektif.
+
+Selain itu, pengelolaan kinerja juga menjadi bagian penting dalam \textit{remote work} di \textit{startup}. \textit{“clearly defined performance expectations are crucial in hybrid and remote settings”}\cite{r15}.  Hal ini menunjukkan bahwa keberhasilan \textit{remote work} di \textit{startup} sangat bergantung pada seberapa jelas \textit{startup} menyampaikan tujuan, indikator peniliaian, dan cara komunikasinya. Dengan adanya ekspetasi yang jelas dan komunikasinya konsisten, karyawan bisa lebih fokus dan lebih produktif meskipun tidak berada di kantor.
+
+\subsection{Implementasi AI dalam \textit{leadership}}
+Implementasi kecerdasan buatan (AI) dalam kepemimpinan menjadi aspek krusial untuk menghadapi era digital yang menuntut kecepatan, ketepatan, dan efisiensi dalam pengambilan keputusan. Selain sebagai alat bantu analisis data, AI juga menjadi kunci dalam membangun budaya organisasi yang inovatif dan responsif terhadap kemajuan teknologi. Sebagaimana diuraikan \cite{r12}, penerapan teknologi AI dalam operasional administrasi \textit{startup} layanan seperti \textit{Tiketux Kuy} yang mengalami berbagai tantangan selama tahap implementasi dan optimalisasi. Teknologi AI seharusnya bisa jadi solusi, tetapi bisa menimbulkan masalah baru jika tidak didukung oleh data yang berkualitas, pelatihan bagi tenaga kerja, serta pengawasan terhadap kinerja sistem secara berkelanjutan. Oleh karena itu, adopsi AI harus disertai evaluasi secara menyeluruh terhadap kesiapan organisasi, termasuk bagian perubahan manajemen dan pemikiran digital para karyawan.
+Sedangkan untuk karakteristik yang wajib dimiliki seorang pemimpin digital menurut Klein \cite{r13}:
+ \begin{enumerate}[label=\arabic*.]
+ \item{Karakteristik Digital Bisnis: Seorang pemimpin digital harus memiliki visi inovatif yang tidak hanya memandang ke arah masa depan, tetapi juga membawa inovasi yang nyata. Kecerdasan dalam membangun jaringan juga sangat penting, yakni kemampuan untuk menggabungkan pengetahuan, keterampilan, dan sumber daya yang dimiliki tim dengan baik. Selain itu, \textit{startup} harus menjadi pencari talenta digital yang berpengalaman. Kemampuan untuk mengelola situasi rumit juga penting agar dapat menyelesaikan masalah dalam kondisi sulit. Pemahaman bisnis diperlukan untuk merancang model bisnis baru yang bersifat adaptif.}
+ \item{Karakteristik Sikap Sosial: Pemimpin digital berperan sebagai pelatih yang memotivasi dan menjadi panutan bagi timnya. Model kepemimpinan harus bersifat demokratis dan delegatif, dengan struktur organisasi yang minim hierarki dan birokrasi agar bisa fokus pada pemberdayaan dan perkembangan anggota tim. Nilai transparansi juga merupakan nilai utama dalam kepemimpinan.}.
+ \item{Karakteristik Sikap Umum: Seorang pemimpin digital harus lincah, mampu beradaptasi dengan model bisnis yang baru dan mampu merencanakan strategi transformasi yang efektif. Kemampuan untuk belajar dari kesalahan merupakan aspek penting untuk mencapai kemajuan. Selain itu, pemimpin harus memiliki orientasi yang kuat terhadap pengetahuan dan berkomitmen sebagai pembelajar sepanjang hidup.}
+ \end{enumerate}
+
+\subsection{\textit{Neurodiversity} di Tempat Kerja}
+\textit{Neurodiversity} adalah konsep yang merujuk pada perbedaan atau keragaman cara berfikir dan sistem saraf manusia. Istilah \textit{neuroduversity} pertama kali diperkenalkan oleh Judy Singer pada tahun 1990-an. Judy Singer berpendapat bahwa kondisi \textit{neurodiversity} seperti autisme, ADHD, disleksia, dan sindrom tourette bukanlah “gangguan”, melainkan perbedaan alami dalam cara berfikir dan belajar tiap individu yang patut dihargai.
+
+Dalam lingkungan kerja, konsep \textit{neurodiversity} menyoroti bahwa perbedaan cara  berfikir, belajar dan komunikasi dapat menjadi aset penting yang mendorong inovasi dan kreatifitas. \textit{Learning Disabilities Association of America} (LDAA, 2021) menyatakan bahwa penerapan prinsip \textit{neurodiversity} di lingkungan  kerja mampu meningkatkan produktivitas, kreativitas, dan kesejahteraan para karyawan\cite{r16}.
+
+Meskipun, banyak organisasi atau perusahaan yang belum sepenuhnya siap menerapkan prinsip \textit{neurodiversity} karena proses rekrutmen dan budaya kerjanya yang lebih cocok bagi individu dengan cara berfikir yang umum atau neurotipikal. Namun, faktanya Laporan Deloitte  mengungkapkan bahwa sekitar 10–20 \%\ tenaga kerja di dunia merupakan individu neurodivergen, yaitu individu yang memiliki cara berpikir, belajar, atau memproses informasi yang berbeda dari kebanyakan orang (neurotipikal)\cite{r17}. Tim yang melibatkan individu neurodivergen diketahui memiliki tingkat produktivitas dan kreativitas hingga 30 \%\ lebih tinggi dibandingkan dengan tim yang terdiri dari individu neurotipikal. 
+
+% Metodologi
+\section{Metodologi}
+Metode yang digunakan dalam penelitian ini adalah metode studi literatur. Studi literatur atau dikenal juga sebagai  penelitian kepustakaan adalah cara pengumpulan data dan informasi yang merujuk pada  sumber-sumber tertulis seperti jurnal ilmiah dan artikel akademik terpercaya. Pendekatan ini dipilih karena fokus utama penelitian terletak pada pengembangan model teoritis, bukan pada pengumpulan data lapangan secara langsung.
+
+Tujuan  penelitian ini adalah untuk menciptakan kerangka panduan (\textit{framework})  kepemimpinan 4.0 yang sesuai dengan perubahan atau revolusi \textit{startup} di Indonesia, dengan menggabungkan tiga elemen utama, yaitu:
+\begin{enumerate}[label=\arabic*.]
+    \item Strategi kerja jarak jauh (\textit{remote work}) yang efesien,
+    \item Kolaborasi antara manusia dan AI
+    \item Penerimaan dan dukungan terhadap \textit{neurodiversity} di lingkungan kerja.
+\end{enumerate}
+
+Pendekatan ini diharapkan dapat menghasilkan model panduan yang adaptif, fleksibel dan relevan bagi praktik kepemimpinan digital di era industri 4.0.
+
+Adapun tahapan metodologi penelitian yaitu sebagai berikut:
+\begin{enumerate}[label=\arabic*.]
+    \item Identifikasi konsep dan isu utama
+    
+    Tahap pertama penelitian ini adalah mengidentifikasi isu-isu yang berkaitan dengan kepemimpinan di era digital, termasuk tantangan dalam beradaptasi dengan teknologi dan perubahan pola kerja. Proses ini dilakukan dengan meninjau berbagai sumber literatur, seperti jurnal ilmiah, buku referensi, dan artikel akademik terkini, untuk menemukan inti permasalahan yang menjadi landasan perancangan \textit{framework} panduan.
+    
+    \item Analisis literatur dan studi kasus
+    
+    Penelitian melibatkan analisis literatur dan studi kasus pada \textit{startup} yang sudah berhasil menerapkan praktik kepemimpinan digital dan kerja jarak jauh, dengan fokus khusus pada Halodoc. Analisis ini menyelidiki pola dan prinsip dalam manajemen kerja jarak jauh, kolaborasi antara manusia dan AI dalam layanan digital, serta strategi dalam mengelola keberagaman \textit{neurodiversity} di lingkungan kerja.
+    
+    \item Perancangan \textit{framework} panduan\\
+    Berdasarkan hasil analisis literatur, dikembangkan sebuah \textit{framework }kepemimpinan 4.0 yang menggabungkan tiga elemen utama yaitu strategi kerja jarak jauh \textit{remote work}, kolaborasi manusia dan AI, serta inklusi \textit{neurodiversity}. \textit{Framework} ini dirancang agar bersifat adaptif, mudah diterapkan, dan relevan dengan konteks pelaksanaan dalam \textit{startup}  digital.
+    \item Validasi Konseptual\\
+    \textit{Framework} tersebut dievaluasi secara teoretis dengan membandingkannya agar selaras dengan teori kepemimpinan digital serta temuan dari penelitian sebelumnya. Validasi ini bertujuan untuk memastikan bahwa\textit{ framewok }tersebut sesuai dan relevan dengan dinamika kerja pada \textit{startup} digital.
+    
+    \item Penyusunan panduan implementatif\\
+    Tahap terakhir adalah penyusunan panduan praktis untuk menerapkan \textit{framework} kepemimpinan 4.0. Panduan ini mencakup langkah-langkah penerapan di lingkungan tempat kerja, indikator kinerja utama (\textit{Key Performance Indicators}/KPI), serta mekanisme untuk mengevaluasi keberhasilan. Hasil akhir dari studi ini adalah model panduan kepemimpinan 4.0 yang dapat dijadikan acuan oleh \textit{startup} dalam membangun sistem kepemimpinan yang adaptif, kreatif, dan berbasis digital.
+\end{enumerate}
+
+Berikut disajikan bagan metologi penelitian :
+\begin{figure}[h!] 
+    \centering
+    \includegraphics[width=1\linewidth,keepaspectratio]{bagan.png}
+    \caption{Baganj Metodologi Penelitian} 
+\end{figure}
+
+Dengan metodologi ini, diharapkan penelitian dapat memberikan kontribusi yang signifikan dalam pengembangan teori kepemimpinan modern, serta menyediakan panduan implementasi yang relevan bagi \textit{stratup} digital di era Industri 4.0.
+
+% Hasil dan Pembahasan 
+\section{Hasil dan Pembahasan}
+\subsection{Strategi remote work yang efektif}
+Penerapan kerja jarak jauh atau \textit{remote work }menjadi bagian penting dalam kepemimpinan 4.0, terutama bagi \textit{startup digital} yang membutuhkan fleksibilitas, efisiensi, serta penggunaan teknologi secara optimal. Dari hasil penelitian yang ada, terdapat beberapa strategi penting sebagai penentu keberhasilan dalam penerapan sistem kerja jarak jauh pada \textit{startup}. Salah satu hal penting adalah menyediakan infrastruktur digital yang memadai seperti memiliki akses perangkat kerja, koneksi internet yang stabil, serta aplikasi berbasis cloud untuk kerja bersama memudahkan proses kerja tanpa hambatan. Seperti yang dijelaskan oleh Wells \cite{r15}, kualitas lingkungan digital sangat memengaruhi kesehatan fisik dan mental pekerja. Oleh karena itu, dukungan teknologi yang memadai menjadi dasar keberhasilan kerja jarak jauh. Selain itu, kejelasan tentang ekspektasi kinerja juga menjadi faktor penting dalam keberhasilan kerja jarak jauh \cite{r14}, menyatakan bahwa lingkungan kerja \textit{hybrid} dan \textit{remote} membutuhkan standar kinerja yang jelas dan terbuka. Penetapan tujuan, indikator hasil, serta cara evaluasi yang konsisten membantu pemimpin memantau produktivitas tanpa perlu mengawasi secara langsung di tempat kerja. Hal ini sesusai dengan model kepemimpinan 4.0. 
+
+Dari segi komunikasi, diperlukan koordinasi yang teratur agar semua anggota tim tetap terhubung. Menurut penelitian Wells \cite{r15}, komunikasi rutin melalui \textit{platfrom digital} tidak hanya membuat pekerjaan menjadi lebih efisien, tetapi juga menjaga kesehatan mental pekerja dengan memberikan interaksi sosial yang stabil. Dalam konteks \textit{startup}, komunikasi yang jelas mengurangi resiko kesalahpahaman dan meningkatkan kerja sama lintas divisi. Selanjutnya, fleksibilitas waktu kerja juga menjadi stategi penting dalam menjaga keseimbangan kehidupan kerja dan kehidupan pribadi \textit{(Work-life balance)}. Wells \cite{r15} menunjukkan bahwa memiliki fleksibilitas dalam mengatur waktu kerja bisa membantu mengurangi stress akibat tuntutan pekerjaan, sehingga dapat meningkatkan kesehatan dan produktivitas para pekerja. Meskipun begitu, fleksibiltas ini perlu dikelola dengan adanya aturan jam kerja inti dan pedoman tentang cara berkomunikasi agar tetap bisa menjaga tanggung jawab kerja. Budaya kerja yang didasari oleh kepercayaan dan transparasi merupakan bagian utama dari sistem kerja jarak jauh yang efektif. Menurut \cite{r14}, sistem penilaian berdasarkan hasil kerja jauh lebih sesuai dan adil dalam kerja \textit{remote}. Budaya yang memberikan ruang bagi pekerja untuk bekerja dengan lebih mandiri, sekaligus meningkatkan semangat dan kreativitas dalam menyelesaikan tugas. 
+
+Secara keseluruhan strategi \textit{remote work} yang efektif mencakup lima hal utama, yaitu infrastruktur digital yang kuat, indikator kerja yang jelas, komunikasi yang terorganisir, kebijakan fleksibel yang menjaga keseimbangan antara kerja dan kehidupan, serta budaya kerja yang berbasis kepercayaan. 
+
+\subsection{Model kolaborasi maunsia-AI}
+Kolaborasi antara manusia dan AI merupakan bagian penting dalam kepemimpinan di era 4.0, terutama bagi \textit{startup }digital yang membutuhkan kecepatan, ketepatan, dan efisiensi dalam menjalankan operasionalnya. Dari analisis literatur dan kasus studi yang relevan, terlihat bahwa kolaborasi ini bukan hanya tentang menggunakan teknologi, tetapi tentang bagaimana pemimpin menggabungkan kemampuan analisis AI dengan kecerdasan strategi manusia.
+
+\subsubsection{AI sebagai Mitra Analitis dalam Pengambilan Keputusan}\\
+Hasil kajian dari \cite{ref12} menunjukkan bahwa penggunaan AI di startup tidak hanya berupa alat otomatisasi, tetapi juga membantu dalam analisis untuk pengambilan keputusan operasional. Dalam kasus Teketux Kuy, AI digunakan untuk memproses data besar dan membuat laporan lebih cepat dan akurat. Namun, penelitian tersebut juga menekankan bahwa AI tidak bisa bekerja optimal tanpa bimbingan manusia, terutama untuk menjaga kualitas data dan mengelola risiko penyimpangan sistem.
+
+Temuan ini menunjukkan bahwa model kolaborasi manusia-AI di \textit{startup} harus berbentuk pengambilan keputusan yang didukung AI, dimana AI memperkuat kemampuan analitis, namun pemimpin tetap yang mengambil keputusan utama. Dengan demikian, AI berperan sebagai asisten, bukan pengganti pemimpin.
+
+\subsubsection{Pembagian Peran Komplementer antara Manusia dan AI}
+Kolaborasi antara manusia dan AI merupakan bagian penting dalam kepemimpinan di era 4.0, terutama bagi \textit{startup} digital yang membutuhkan kecepatan, ketepatan, dan efisiensi dalam menjalankan operasionalnya. Dari analisis literatur dan kasus studi yang relevan, terlihat bahwa kolaborasi ini bukan hanya tentang menggunakan teknologi, tetapi tentang bagaimana pemimpin menggabungkan kemampuam analisis AI dengan kecerdasan strategi manusia.
+\begin{enumerate}[label=\arabic*.]
+    \item AI sebagai mitra analitis dalam pengambilan Keputusan
+    
+    Hasil kajian dari \cite{r12} menunjukan bahwa penggunaan AI di \textit{startup} tidak hanya berupa alat otomatisasi, tetapi juga membantu dalam analisis untuk pengambilan keputusan operasional. Dalam kasus teketux Kuy, AI digunakan untuk memproses data besar dan membuat laporan lebih cepat dan akurat. Namun, penelitian tersebut juga menekankan bahwa AI tidak bisa bekerja optimal tanpa bimbingan manusia, terutama untuk menjaga kualitas data dan mengelola risiko penyimpangan sistem.
+    
+    Temuan ini menunjukan bahwa model kolaborasi manusia-AI di \textit{startup} harus berbentuk pengambilan keputusn yang didukung AI. Dimana AI memperkuat kemampuan analitis, namun pemimpin tetap yang mengambil keputusan utama. Dengan demikian AI berperan sebagai asisten, bukan pengganti pemimpin.
+    \item Pembagian peran komplementer antara manusia-AI
+    Untuk membuat kolaborasi efektif, dibutuhkan pembagian peran yang jelas antara manusia dan AI. Berdasarkan teori kepemimpinan digital dijelaskan oleh \cite{r4}, pemimpin di era digital harus memiliki pemahaman teknologi yang memadai untuk memahami cara kerja AI dalam strategi. Kemampuam ini memungkinkan pemimpin untuk menentukan bagian mana yang bisa diotomatisasi oleh AI dan bagian mana yang bisa ditangani manusia.
+    Dari hasil analisis, kolaborasi manusia-AI terdiri dari dua peran yang saling melengkapi:
+    \begin{enumerate}[label=\alph*.] 
+        \item Peran AI
+        \begin{enumerate}[label=\arabic*)]
+            \item Menganalisis data kuantitatif.
+            \item Mengotomatisasi tugas berulang.
+            \item Memberikan rekomendasi berdasarkan algoritma.
+            \item Mendeteksi pola risiko secara cepat.
+        \end{enumerate}
+        \item Peran Manusia
+        \begin{enumerate}[label=\arabic*)]
+            \item Menafsirkan hasil analisis dalam konteks perusahaan.
+            \item Membuat kebijakan yang mempertimbangkan faktor sosial dan emosional.
+            \item Melakukan inovasi dan eksperimen strategis.
+            \item Menilai dampak etis dalam penggunaan teknologi.
+        \end{enumerate}       
+    \end{enumerate}
+    
+    Pembagian peran ini menghasilkan kerja yang efektif, di mana AI mengelola aspek teknis secara cepat, sementara manusia berfokus pada pengambilan keputusan strategis.
+    \item Peran Kepemimpinan dalam mengarahkan kolaborasi Manusia-AI
+    
+    Kemampuan pemimpin manusia menjadi faktor utama keberhasilan kolaborasi manusia-AI.
+    Dalam \cite{r13} menjelaskan bahwa kepemimpinan digital harus memiliki karakteristik seperti fleskibilitas, kemampuan melatih tim, dan orientasi terhadap pengetahuan. Karakteristik ini tidak bisa digantikan AI sehingga pemimpin tetap menjadi pusat dari transformasi digital.Dari hasil analisis, terdapat tiga kompetensi pemimpin yang sangat penting:
+    \begin{enumerate}[label=\alph*.]
+        \item Fleksibilitas strategi dalam merespon perubahan teknologi\\
+        Pemimpin harus cepat beradaptasi dan memimpin tim menghadapi teknologi baru
+        \item Pertimbangan berbasis nilai manusia\\
+        Meskipun AI memberikan rekomendasi berbasis data, pemimpin tetap bertanggung jawab menilai dampak sosial, etis dan budaya.
+        \item Kemampuan membangun budaya kerja digital\\
+        Pemimpin harus menciptakan lingkungan yang mendorong kolaborasi manusia-AI tanpa menimbulkan kecemasan dan menolak teknologi.
+    \end{enumerate}
+    Dengan kompetensi tersebut, pemimpin dapat menyeimbangkan efisiensi teknologi dan kebutuhan manusia sehingga tercipta ekosistem kerja yang harmonis dan inovatif.
+\end{enumerate}
+
+\subsection{Program inklusi \textit{neurodiversity}}
+Implementasi program inklusi \textit{neurodiversity} di tempat kerja memberikan dampak positif bagi karyawan maupun \textit{startup}. Strategi pengelolaan \textit{neurodiversity} mampu meningkatkan  produktivitas, kreativitas, dan kerja sama dalam tim \cite{r16}. Lingkungan kerja inklusif juga membantu karyawan \textit{neurodivergent} seperti autisme, ADHD, dan disleksia untuk mengembangkan potensi \textit{startup}. Pola pikir yang berbeda ini bisa jadi kekuatan bagi \textit{startup}, terutama dalam pekerjaan yang membutuhkan detail, analisis dan pemikiran inovatif. Dukungan fisik, psikologis, dan sosial membuat karyawan \textit{neurodivergent} mengalami peningkatan kesejahteraan dan mengurangi stres \cite{r17}. Karyawan merasa lebih nyaman, dihargai, dan mampu menunjukkan potensi terbaik mereka ketika \textit{startup} memahami dan mengakomodasi kebutuhan \textit{startup}. 
+
+Selain itu, program \textit{neurodiversity} juga mendorong perubahan pada praktik manajemen sumber daya manusia. \textit{Startup} harus menyesuaikan proses rekrutmen, penilaian kinerja, dan pelatihan agar lebih adil dan menerima berbagai jenis kemampuan berpikir \cite{r16}. Pendekatan tersebut membuat sistem pengelolaan SDM lebih berkelanjutan, meningkatkan kepegawaian, dan memperkuat budaya kerja yang lebih manusiawi. Hal ini, memperkuat peran penting pemimpin dalam memberikan dukungan emosional, fleksibilitas, dan komunikasi yang peka terhadap kebutuhan individu \cite{r17}. Pemimpin yang memahami kondisi karyawan dari berbagai aspek dapat menciptakan lingkungan kerja yang ramah, mengurangi pandangan negatif, serta memperkuat hubungan sosial dalam tim.
+
+Dalam konteks era industri 4.0 dan \textit{startup} digital, teknologi termasuk AI dapat memperkuat praktik inklusi \textit{neurodiversity}, seperti melalui rekrutmen yang lebih objektif, pengaturan jadwal kerja, dan pengelolaan beban kerja secara otomatis. \textit{Startup} memiliki budaya yang lebih fleksibel terbukti lebih mampu menerapkan kebijakan inklusi \textit{neurodiversity} secara efektif. Namun, masih ada tantangan, seperti kurangnya pemahaman manajemen, pandangan negatif di dalam \textit{startup}, dan minimnya pelatihan untuk pemimpin maupun karyawan lain. Meskipun demikian, temuan tersebut membuktikan bahwa program inklusi \textit{neurodiversity} memberikan manfaat jangka panjang bagi \textit{startup} dan karyawan, serta sangat relevan untuk dijadikan dasar dalam merumuskan kepemimpinan 4.0 yang berbasis teknologi AI dan nilai-nilai manusiawi di lingkungan \textit{startup digital}.
+
+\subsection{Integrasi ketiga komponen}
+Pada era kepemimpinan 4.0, khususnya di \textit{startup} digital, strategi \textit{remote work}, kolaborasi antara manusia dan AI,serta inklusi \textit{neurodiversity} tidak hanya memiliki peran masing-masing, tetapi juga saling mendukung untuk membangun lingkungan kerja yang efektif dan fleksibel. Penjelasan berikut akan menguraikan hubungan antara ketiga elemen ini dan membentuk dasar kepemimpinan modern dalam \textit{startup} digital.
+
+Pertama, \textit{remote work} berfungsi sebagai dasar operasional yang fleksibel, memungkinkan karyawan untuk bekerja dari berbagai tempat tanpa mengurangi produktivitas. Keberhasilan dari kerja jarak jauh memerlukan dukungan infrastruktur digital yang memadai, seperti perangkat kerja yang tepat dan koneksi internet yang stabil. Selain itu, adanya komunikasi yang terstruktur serta indikator kinerja yang jelas sangat penting untuk menjaga kualitas kerja. Secara keseluruhan, \textit{remote work} turut membangun budaya organisasi yang menekankan kepercayaan, transparansi, dan penilaian berdasarkan hasil kerja, bukan kehadiran fisik.
+
+Kedua, integrasi kolaborasi manusia AI dengan \textit{remote work} secara signifikan meningkatkan efesiensi operasional. AI berperan dalam mengotomatisasi tugas-tugas rutin, memantau progres kerja, serta memberikan rekomendasi berbasis data, sehingga manajer tidak harus selalu melakukan pengawasan secara langsung.  Pendekatan ini sejalan dengan model penilaian kenerja yang berfokus pada hasil, sesuai dengan prinsip kepemimpinan 4.0. 
+
+Ketiga, inklusi \textit{neurodiversity} memainkan peran penting dalam memperkaya sumber daya manusia dalam kepemimpinan digital. Karyawan dengan kondisi neudivergensi seperti autisme, ADHD, atau disleksia memiliki kemampuan unik, termasuk analisis yang tajam, perhatian pada detail, dan kemampuan“hyperfocus”. Deloitte menyoroti bahwa menerapkan inklusi bagi karyawan neurodivergen tidak hanya menjamin keadilan, tetapi juga mendorong inovasi, karena beragamnya sudut pandang meningkatkan kapasitas organisasi dalam memecahkan masalah \cite{r17}. Dalam hal ini, Remote work berfungsi sebagai jembatan yang memungkinkan individu menciptakan lingkungan kerja yang mengurangi tekanan sensorik dan sosial, Ini juga menguatkan fleksibilitas jam kerja dan kondisi kerja dari jarak jauh, serta memberi kesempatan kepada karyawan neurodivergent untuk mengatur pola kerja sesuai kebutuhan mereka.
+
+Selain itu, penggunana AI dan inklusi \textit{neurodiversity} menunjukkan kolaborasi yang penting. AI dapat digunakan dalam proses rekrutmen agar lebih adil tanpa adanya diskriminasi. Sebuah laporan dari Universitas Mannheim menunjukkan bahwa pekerja neurodivergen mendapat manfaat dari kemampuan AI untuk menyesuaikan tempat kerja mereka, di mana AI membantu memahami preferensi ini dan secara otomatis memenuhi kebutuhan mereka, seperti mengurangi gangguan indera. Selain itu, penggunaan alat digital seperti antarmuka yang bisa disesuaikan, pembaca layar, dan penerjemah suara menjadi teks sangat membantu efektivitas kerja jarak jauh bagi karyawan dari kalangan neurodiversitas.
+
+Dari perspektif budaya organisasi, penggabungan tiga komponen, yaitu \textit{remote work}, kolaborasi manusia dan AI, serta inklusi neurodiveersity mendorong terciptanya suasana kerja yang didasarkan pada kepercayaan, keterbukaan, dan orientasi pada hasil. Sistem penilaian berfokus pada hasil kerja, bukan hanya kehadiran fisik, sehingga meningkatkan tanggung jawab karyawan. AI membantu dalam pemantauan dan umpan balik, sementara \textit{remote work} menawarkan fleksibilitas dalam hal waktu dan lokasi kerja. Kombinasi ini menciptakan budaya organisasi di mana karyawan merasa dihargai dan dipercaya, termasuk mereka yang neurodivergen.
+
+Secara keseluruhan, integrasi\textit{ remote work}, kolaborasi manusia-AI, dan inklusi \textit{neurodiversity }membentuk pendekatan kepemimpinan 4.0 yang lebih holistik, memadukan efisiensi teknologi, fleksibilitas operasional, serta penghargaan terhadap keberagaman kognitif. Startup digital yang menerapkan strategi terintegrasi ini tidak hanya berpotensi meningkatkan kinerja dan produktivitas, tetapi juga membangun budaya kerja yang inovatif, dan berkelanjutan, sehingga memperoleh keunggulan kompetitif di era persaingan global.
+
+\section{Implementasi dan Metrik}
+\subsection{Langkah implementasi praktis}
+\begin{enumerate}[label=\arabic*.]
+    \item{Memahami dasar-dasar dan kebijakan internal yang inklusif. \textit{Startup} harus mengenali ciri-ciri kebutuhan pekerja \textit{neurodivergen} sebelum membuat strategi yang tepat \cite{r18}. Pemimpin dan karyawan juga harus mengikuti pelatihan untuk mengurangi anggapan negatif, terutama dalam proses perekrutan. Teknologi AI membantu proses ini dengan algoritma yang menyaring kandidat berdasarkan keterampilan teknis, sehingga mengurangi anggapan negatif terhadap cara berkomunikasi atau perilaku mereka.}
+    \item{Menyediakan kerja yang fleksibel dan terstruktur. Individu \textit{neurodivergen} bekerja lebih optimal dalam lingkungan yang jelas, minim gangguan, dan memiliki ritme kerja yang bisa disesuaikan \cite{r17}. Dengan pendekatan kepemimpinan 4.0, \textit{startup} digital bisa memanfaatkan AI untuk mengatur jadwal adaptif, memberikan pengingat otomatis, serta membantu beban kerja secara real time agar tidak terlalu berat. Penyesuaian ini membuat karyawan lebih nyaman dan produktif.}
+    \item{Membangun sistem pengawasan dan komunikasi yang terus-menerus. Evaluasi rutin antara pemimpin dan karyawan untuk menemukan hambatan, menyesuaikan strategi kerja, serta memastikan kebutuhan setiap individu terpenuhi \cite{r18}. Sistem analisis yang berbasis AI dapat membantu dengan menyediakan data mengenai performa harian, pola stres, serta aspek pekerjaan yang perlu diperbaiki. Dengan demikian, pemimpin dapat merespons perubahan kebutuhan secara cepat dan menjaga lingkungan kerja yang inklusif di \textit{startup} digital.}
+\end{enumerate}
+
+\subsection{Key Performance Indicators} (KPI)
+KPI (\textit{Key Performance Indicator}) merupakan alat yang digunakan untuk menilai kinerja, baik yang bersifatnya finansial maupun non-finansial. KPI berfungsi untuk mengevaluasi sejauh mana penerapan kepemimpinan 4.0 berjalan dengan baik dalam \textit{startup} digital. Tujuan dari KPI adalah memberikan petunjuk yang terstruktur guna menilai produktivitas, kolaborasi serta integrasi \textit{remote work}, AI dan program \textit{neurodiversity}. Masing-masing indikator KPI memiliki target numerik yang dapat diukur dan realistis agar dapat dievaluasi secara konsisten. Metrik ini mencakup aspek produktivitas, efisiensi, kualitas kolaborasi manusia–AI, serta tingkat inklusivitas terhadap \textit{neurodiversity}. Dengan metrik yang jelas, pemimpin \textit{startup} memastikan bahwa penerapan kepemimpinan 4.0 memberikan hasil yang efektif, berkelanjutan, dan berdampak positif bagi perkembangan \textit{startup}.
+
+Adapun tabel KPI sebagai berikut.
+\begin{table}[h]
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{|p{1.2cm}|p{1.5cm}|p{4cm}|}
+\hline
+\textbf{Kategori} & \textbf{Aspek} & \textbf{Indikator} \\ \hline
+\multirow{Remote Work}
+& Produktivitas & \textit{Task Completion Rate} – Mengukur jumlah tugas yang selesai tepat waktu. \\ \cline{2-3}
+&  & \textit{Average Task Duration} – Menilai efisiensi waktu penyelesaian tugas. \\ \cline{2-3}
+& Komunikasi & \textit{Communication Stability} – Mengukur kelancaran komunikasi digital. \\ \cline{2-3}
+&  & \textit{Response Time} – Mengukur kecepatan tim merespon pesan kerja. \\ \cline{2-3}
+& \textit{Well-being} & \textit{Work–Life Balance Index} – Menilai tingkat keseimbangan kerja dan kehidupan pribadi. \\ \cline{2-3}
+&  & \textit{Burnout Index} – Mengukur tingkat stres yang mempengaruhi performa kerja. \\ \cline{2-3}
+& Efisiensi & \textit{Operational Cost Reduction} – Mengukur pengurangan biaya operasional setelah \textit{remote work}. \\ \hline
+\multirow{Kolaborasi Manusia–AI}
+& Kinerja AI & \textit{Accuracy Rate} – Mengukur akurasi prediksi AI. \\ \cline{2-3}
+&  & \textit{Error Rate} – Menilai kesalahan prediksi AI. \\ \cline{2-3}
+&  & \textit{Decision Time} – Kecepatan AI dalam mendukung pengambilan keputusan. \\ \cline{2-3}
+& Interaksi &\textit{ Recommendation Acceptance Rate} – Mengukur tingkat penerimaan manusia terhadap rekomendasi AI. \\ \cline{2-3}
+&  & \textit{AI Utilization Rate} – Mengukur efektifitas pemanfaatan AI dalam proses kerja \\ \hline
+\end{tabular}
+\end{table}
+\begin{table}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{|p{1.2cm}|p{1.5cm}|p{4cm}|}
+\hline
+\textbf{Kategori} & \textbf{Aspek} & \textbf{Indikator} \\ \hline
+\multirow{\textit{Neurodiver- sity}}
+& Inklusivitas & \textit{Inclusive Hiring Rate} – Mengukur tingkat keterbukaan \textit{startup} dalam merekrut individu neudiversity. \\ \cline{2-3}
+& Retensi & \textit{ND Retention Rate} – Mengukur eberlanjutan kerja karyawan ND. \\ \cline{2-3}
+& Akomodasi & \textit{Accommodation Delivery Time} – Mengukur kecepatan \textit{startup} dalam menyediakan fasilitas pendukung. \\ \cline{2-3}
+& \textit{Well-being} & \textit{ND Well-being Index} – Mengukur kualitas pengalaman kerja ND \\ \hline
+\multirow{Integrasi}
+& Transformasi 4.0 & \textit{Digital Maturity Index} – Mengukur sejauh mana startup siap menjalankan transformasi digital baik teknologi atau SDM \\ \cline{2-3}
+& Kinerja Organisasi & \textit{Productivity Growth} – Mengukur peningkatan produktivitas setelah implementasi 4.0. \\ \cline{2-3}
+& Kepuasan kerja & \textit{Employee Satisfaction} – Mengukur tingkat kepuasan seluruh karyawan. \\ \cline{1-3}
+\end{tabular}
+\centering
+\caption{Tabel KPI Startup Digital dan Penerapan Kepemimpinan 4.0}
+\label{tab:kpi_onecolumn}
+\end{table}
+\vspace{-1 cm}
+
+Dengan adanya KPI yang terstruktur, startup memperoleh alat ukur yang efektif untuk mengawasi kinerja, mutu kerjasama, dan tingkat inklusivitas \textit{neurodiversity}. Ini menjadi langkah cerdas untuk memastikan pelaksanaan kepemimpinan 4.0 berlangsung dengan baik dan memberikan hasil yang nyata bagi kemajuan \textit{startup}.
+
+\subsection{Metode evaluasi keberhasilan}
+Metode evaluasi keberhasilan merupakan pendekatan sistematis yang digunakan untuk menilai efektivitas implementasi Kepemimpinan 4.0 berdasarkan indikator \textit{Key Performance Indicator}(KPI) yang telah ditetapkan. Evaluasi dilakukan untuk memastikan bahwa setiap strategi yang diterapkan baik pada aspek \textit{remote work}, kolaborasi manusia-AI, \textit{neurodiversity}, maupun transformasi digital benar benar memberikan dampak positif memberikan dampak positif terhadap produktivitas, efesiensi, kolaborasi, dan kesejahteraan karyawan. Proses evaluasi dilakukan secara terstruktur melalui analisis data, perbandingan dengan target, dan identifikasi peningkatan kinerja.
+Berikut metode evaluasi berdasarkan indikator KPI:
+\begin{enumerate}[label=\arabic*.]
+    \item \textit{Remote work}
+    \begin{enumerate}[label=\alph*.]
+        \item \textit{Task Completion Rate}\\
+        Keberhasilan indikator ini dievaluasi dengan menghitung persentase tugas yang diselesaikan tepat waktu menggunakan data dari platform manjemen tugas seperti \textit{Trello, Asana}, atau\textit{ Notion}. Indikator dinilai berhasil jika jumlah tugas selesai mencapai ≥ 90 \% per minggu, yang menunjukan peningkatan produktivitas dan kedisiplinan dalam sistem \textit{remote work}.
+        \item \textit{Average Task Duration} \\
+        Evaluasi dilakukan dengan mengukur rata rata durasi penyelesaian tugas melalui \textit{time tracking system}. Data dibandingkan per bulan untuk melihat perubahan efesiensi. Keberhasilan dicapai apabila terdapat penurunan durasi waktu pengerjaan sebesar 10-20 \% dalam tiga bulan,yang menandakan peningkatan kemampuan manajemen waktu.
+        \item \textit{Communication stability}\\
+        Indikator ini dievaluasi melalui analisis laporan miskomunikasi, klarifikasi berulang, atau revisi pesan. Data diambil dari aplikasi komunikasi digital seperti\textit{ Slack} atau \textit{Microsoft Teams}. Target keberhasilan tercapai apabila jumlah miskomunikasi < 5 \% per bulan, menunjukan komunikasi tim stabil dalam lingkungan \textit{remote work}.
+        \item \textit{Response Time}\\
+        Metode evaluasi dilakukan dengan mekihat rata-rata waktu respons pesan dalam jam kerja berdasarkan log aplikasi komunikasi. Keberhasilan indikator ini ditunjukan oleh waktu respon < 10 menit, yang menandakan kolaborasi \textit{real time} berlangsung efektif.
+	    \item \textit{Work Life Balance index}\\
+        Indikator evaluasi menggunakan survei \textit{work life balance} berskala 1-100 indeks yang mencapai ≥ 75 menunjukan bahwa karyawan dapat menjaga keseimbangan pribadi dan pekerjaan meski bekerja secara jarak jauh.
+        \item \textit{Burnout Index}\\
+        Evaluasi dilakukan melalui survei \textit{burnout} setiap kuartal menggunakan alat seperti \textit{Maslach Burnout Inventory} (MBI). Keberhasilan dinilai dari penurunan \textit{burnout} minimal 10 \% perkuartal, yang menunjukan bahwa sistem kerja yang diterapkan mendukung kesehatan mental karyawan.
+	    \item \textit{Operasi Cost Reeduction} \\
+        Keberhasilan indikator dievaluasi dengan membandingkan laporan keuangan sebelum dan setelah penerapan \textit{remote work}, indikator ini berhasil jika terjadi penghematan biaya operasional minimal 15\% sebagai bukti efisiensi struktur kerja digital.
+    \end{enumerate}
+
+    \item Kolaborasi Manusia-AI
+	\begin{enumerate}[label=\alph*.]
+	    \item \textit{Accuracy Rate}\\
+        Evaluasi dilakukan melalui pemeriksaan log AI untuk menghitung jumlah prediksi atau output benar dibandingkan total output. Target keberhasilan ≥ 85\% menunjukan AI bekerja dengan akurat dan dapat diandalkan. 
+	    \item \textit{Error Rate} \\
+        Indikator ini dievaluasi melalui perhitungan error output AI terhadap total eksekusi. Keberhasilan ditunjukan apabila \textit{error rate} ≤ 5\% menandakan model AI stabil dan minim kesalahan.
+	    \item \textit{Decision Time}\\
+        Keberhasilan dievaluasi dengan membandingkan durasi pengambilan keputusan sebelum dan sesudah implementasi AI. Apabila keputusan dapat dilakukan 20-40\% lebih cepat, maka integrasi AI dianggap berhasil meningkatkan efisiensi operasional.
+	    \item \textit{Recommendation Acceptance Rate}\\
+        Evaluasi dilakukan dengan menghitung presentase rekomendasi AI yang digunakan atau diterima manusia dalam keputusan kerja. Indikator ini berhasil apabila tingkat penerimaan mencapai ≥ 70\% menunjukan adanya kepercayaan dan kolaborasi efektif antara manusia dan AI.
+	    \item \textit{AI Utilization Rate}\\
+        Metode evaluasi dilakukan dengan melihat jumlah proses kerja yang memanfaatkan AI dibandingkan total proses kerja. Indikator dinyatakan berhasil jika AI digunakan pada ≥ 60\% alur kerja, menandakan tingkat adopsi teknologi yang tinggi.
+    \end{enumerate}
+    
+	\item \textit{Neurodiversity}
+	\begin{enumerate}[label=\alph*.]
+	    \item \textit{Inclusive Hiding Rate} \\
+        Keberhasilan dievaluasi dengan menghitung persentase pekerja neurodivergen (ND) dalam perusahaan. Indikator dianggap berhasil apabila mencapai 5-10\% menunjukan bahwa perusahaan telah membuka akses inklusif dan mendukung. 
+	    \item \textit{ND retention rate}\\
+        Evaluasi dilakukan dengan mengukur tingkat keberlanjutan kerja karyawan ND dalam satu tahun. Tingkat retensi ≥ 80\% menunjukan keberhasilan dalam menciptakan lingkungan kerja inklusif dan mendukung. 
+    	\item \textit{Accommodation Delivery Time}\\
+        Keberhasilan indikator dinilai berdasarkan kecepatan penyediaan fasilitas adaptif bagi karyawan ND. Indikator berhasil apabila akomodasi tersedia dalam ≤ 7 hari setelah permintaan diajukan, menunjukan responsivitas HR dan perusahaan.
+    	\item \textit{ND Well being Index}\\
+        Indikator ini dievaluasi melalui survei kesejahteraan khusus ND dengan skala 1-100. Keberhasilan dicapai apabila skor kesejahteraan mencapai ≥ 80, menandakan bahwa pekerjaan ND merasa nyaman dan didukung dalam lingkungan kerja.
+    \end{enumerate}
+    
+    \item Integratif 
+    \begin{enumerate}[label=\alph*.]
+        \item \textit{Digital Maturity Index}
+        Evaluasi dilakukan melalui \textit{audit digital maturity }yang mencakup kesiapan teknologi, kompetensi SDM, dan efektivitas proses kerja digital. Keberhasilan dicapai ketika perusahaan mencapai level mature dalam 12 bulan.
+	    \item \textit{Productivity Growth}
+        Keberhasilan indikator dinilai dengan membandingkan output perusahaam antar kuartal. Peningkatan produktivitas sebesar 10-20\% per kuartal menunjukan bahwa implementasi kepemimpinan 4.0 memberi dampak signifikan pada kinerja perusahaan. 
+    	\item \textit{Employee Satisfaction}
+        Evaluasi dilakukan melalui survei kepuasan kerja. Indikator dinyatakan berhasil apabila skor rata-rata kepuasan kerja mencapai  ≥ 80/100, mencerminkan kondisi kerja yang sehat dan mendukung. 
+    \end{enumerate}
+\end{enumerate}
+ 
+\section{Kesimpulan dan Saran}
+\subsection{Kesimpulan}
+Studi ini menunjukkan bahwa keberhasilan \textit{startup} digital di masa Industri 4.0 sangat bergantung pada kemampuan pemimpin dalam menggabungkan teknologi dengan nilai-nilai kemanusiaan. Kepemimpinan 4.0 tidak hanya membutuhkan kemampuan dalam teknologi, tetapi juga kemampuan beradaptasi, memiliki empati, serta mampu mengelola perbedaan cara berpikir. Hasil studi menunjukkan bahwa ada tiga elemen utama yaitu, strategi \textit{remote work}, kolaborasi antara manusia dan AI serta implementasi inklusi \textit{neurodiversity} merupakan fondasi penting dalam menciptakan lingkungan kerja yang fleksibel, inovatif dan berkelanjutan. 
+
+\textit{Remote work} terbukti mampu meningkatkan efisiensi operasional serta keseimbangan antara pekerjaan dan kehidupan pribadi, selama didukung oleh infrastruktur digital yang memadai dan sistem komunikasi yang terorganisir. Kolaborasi antara manusia dan AI memberikan dampak positif dalam pengambilan keputusan berbasis data, sekaligus memastikan proses kerja berlangsung lebih cepat dan akurat. Sementara itu, penerapan inklusi \textit{neurodiversity} memberikan kontribusi besar dalam meningkatkan kreativitas, produktivitas, serta keberagaman pemikiran di lingkungan \textit{startup}.
+
+Secara keseluruhan, penggabungan ketiga komponen tersebut memerlukan peran aktif pemimpin sebagai fasilitator dalam proses \textit{transformasi} digital yang mampu menggabungkan teknologi dengan nilai-nilai kemanusiaan secara seimbang.\textit{ Framework} kepemimpinan 4.0 yang dikembangkan dalam penelitian ini diharapkan dapat menjadi acuan bagi \textit{startup} digital dalam membangun sistem kepemimpinan yang responsive, berbasis teknologi, dan berorientasi pada keberlanjutan \textit{startup}. 
+
+\subsection{Saran}
+Berdasarkan hasi studi, \textit{startup} digital disarankan untuk memperkuat kesiapan digital dengan meningkatkan pemahaman tentang teknologi, mengoptimalkan kerja jarak jauh (\textit{remote work}), serta menggunakan kecerdasan buatan (AI) secara bertahap untuk mendukung berbagai proses operasional. Pemimpin juga perlu mengembangkan kemampuan komunikasi dan kerja sama agar dapat menciptakan lingkungan kerja yang inklusif, terutama bagi karyawan dengan kebutuhan neurodivergen dengan memastikan adanya kebijakan akomodasi yang fleksibel dan sesuai kebutuhan individu. Selain itu, penilaian kinerja berdasarkan \textit{key performance indicator} (KPI) harus dilakukan secara berkala agar strategi kepemimpinan era 4.0 tetap sesuai dan efektif dalam menghadapi perubahan dalam dunia digital. 
+
+% ----------------- Referensi -----------------
+\begin{thebibliography}{99}
+\bibitem{r1}
+Prawestri, M. (2024). \textit{Mapping the Digital Leadership Research Landscape on Industry 4.0}. \textit{Asian Journal of Management Analytics (AJMA)}.
+\bibitem{r2}
+Sasmita, Y. (2025). \textit{Transformational Leadership and Organizational Agility in The Era of Industry 4.0}. \textit{Journal of Economics and Management}.
+\bibitem{r3}
+Kreiterling, C. (2023). \textit{Digital Innovation and Entrepreneurship: A Review of Challenges in Competitive Markets}. \textit{Journal of Innovation and Entrepreneurship}.
+\bibitem{r4}
+Heriansyah, T. (2025). \textit{The Influence of Digital Leadership, Digital Innovation and Organizational Learning on Digital Maturity to Improve Organizational Performance: Regional III, Indonesia}. \textit{Golden Ratio of Human Resource Management}.
+\bibitem{r5}
+Balahurovska, I. (2023). \textit{The Role of Leadership in Industry 4.0}.\textit{[Journal name not specified]}.
+\bibitem{r6}
+Benmira, S., \&\ Agboola, M. (2021). \textit{Evolution of leadership theory}. \textit{faculty of medical leadership and management}.
+\bibitem{r7}
+Gelaidan, H. M., \&\ Al-Swidi, A. K. (2022). \textit{Servant and authentic leadership as drivers of innovative work behaviour: the moderating role of creative self-efficacy}. \textit{European Journal of Innovation Management}.
+\bibitem{r8}
+Futri, I. (2025). \textit{Open innovation’s effects on Indonesia’s digital health market and related societal issues.} \textit{Cogent Arts \&\ Humanities, 12.}
+\bibitem{r9}
+Rois, A. (2024). \textit{Entrepreneurial Landscapes in Indonesian Digital Health: A Comprehensive Outlook.} \textit{ResearchGate.}
+\bibitem{r10}
+Syavitra, T. (2023). \textit{Faktor penentu kesuksesan startup di Indonesia pasca Covid-19 (Studi kasus: Komunitas Startup)}. Jurnal Aplikasi Manajemen dan Inovasi Bisnis.
+\bibitem{r11}
+Reza, F., \& Noviansyah. (2024). \textit{Strategi bisnis startup melalui Business Model Canvas: Studi kasus Gojek dan Airbnb}. Jurnal Cakrawala Ilmiah, 3.
+\bibitem{r12}
+Asmala, T., \&\ Barokah, R. A. (2025). \textit{Penerapan Artificial Intelligence Dalam Administrasi Operasional: Studi Kasus Pada Startup di Bidang Jasa Pengiriman Tiketux Kuy Di Kota Cimahi}. \textit{JAKUMA : Jurnal Akuntansi dan Manajemen Keuangan}.
+\bibitem{r13}
+KLEIN, M. (2020 ). \textit{LEADERSHIP CHARACTERISTICS IN THE ERA OF DIGITAL TRANSFORMATION}.\textit{BUSINESS \&\ MANAGEMENT STUDIES: AN INTERNATIONAL JOURNAL}.
+\bibitem{r14}
+Wells et al. (2023). \textit{A Systematic Review of the Impact of Remote Working Referenced to the Concept of Work–Life Flow on Physical and Psychological Health}. \textit{Workplace Health \&\ Safety}.
+\bibitem{r15}
+Mabaso, C. M., \&\ Manuel, N. (2024). \textit{Performance management practices in remote and hybrid work environments: An exploratory study}. \textit{SA Journal of Industrial Psychology}.
+\bibitem{r16}
+Rollnik-Sadowska, E., \&\ Grabińska, V. (2023). \textit{Managing neurodiversity in workplaces: A review and future research agenda for sustainable human resource management}. \textit{Sustainability}
+\bibitem{r17}
+Doyle, N. (2020). \textit{Neurodiversity at work: A biopsychosocial model and the impact on working adults}. \textit{British Medical Bulletin}
+\bibitem{r18}
+Rollnik-Sadowska, E., \&\ Grabi´nska, V. (2023). \textit{Managing Neurodiversity in Workplaces: A Review and Future Research Agenda for Sustainable Human Resource Management}. \textit{Sustainability}.
+\end{thebibliography}
+\end{document}
