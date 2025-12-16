@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CoffeeWise – Smart Coffee Health Assistant (Dynamic)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        /* --- Variabel & Reset --- */
+        :root {
+            --coffee-brown: #4b2e18;
+            --health-green: #4caf50;
+            --alert-yellow: #ffc107;
+            --risk-red: #f44336;
+            --card-radius: 20px;
+            --card-shadow: 0 5px 20px rgba(75, 46, 24, 0.1);
+            --bg: #f9f6f2;
+            --text-dark: #2e1a0e;
+            --text-muted: rgba(46, 26, 14, 0.65);
+            --caffeine-percent: 0%; /* Disesuaikan oleh JS */
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text-dark);
+            line-height: 1.5;
+            padding-bottom: 70px;
+            max-width: 500px;
+            margin: 0 auto;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, .section-title {
+            font-family: 'Poppins', sans-serif;
+            color: var(--coffee-brown);
+        }
+        
+        .container {
+            padding: 24px 16px;
+        }
+
+        /* --- Start Page Styles (Dipertahankan) --- */
+        .start-page {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 200;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            background: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)),
+                        url('https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=1470&q=80');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            padding: 0 20px;
+            box-sizing: border-box;
+            transition: opacity 0.4s ease, visibility 0.4s ease;
+        }
+
+        .start-page.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .start-page h1 { font-size: 2.4rem; margin-bottom: 12px; text-shadow: 0 2px 6px rgba(0,0,0,0.6); }
+        .start-page p { font-size: 1.1rem; margin-bottom: 20px; opacity: 0.9; text-shadow: 0 1px 4px rgba(0,0,0,0.5); }
+
+        .start-page button {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 30px;
+            background-color: #f4b400;
+            color: #000;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+        .start-page button:hover { background-color: #e5a700; transform: translateX(-50%) scale(1.05); }
+        /* --- End Start Page Styles --- */
+
+
+        /* --- Tampilan Halaman (Page View) dan Navigasi (Dipertahankan) --- */
+        .page { display: none; animation: fadeIn 0.3s ease-in-out; }
+        .page.active { display: grid; gap: 24px; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } } /* Tambahkan Animasi */
+
+        .page-header { font-size: 1.8rem; margin-bottom: 20px; text-align: center; padding-top: 10px; color: var(--coffee-brown); }
+        .footer-nav { 
+            position: fixed; bottom: 0; left: 0; right: 0; max-width: 500px; margin: 0 auto; 
+            background: #fff; border-top: 1px solid rgba(75, 46, 24, 0.1); 
+            display: flex; justify-content: space-around; padding: 8px 0; 
+            box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.05); z-index: 100; 
+        }
+        .nav-item { 
+            display: flex; flex-direction: column; align-items: center; cursor: pointer; 
+            padding: 8px 10px; font-size: 0.75rem; font-weight: 600; 
+            color: var(--text-muted); transition: color 0.3s; 
+        }
+        .nav-item i { font-size: 1.4rem; margin-bottom: 4px; font-style: normal; }
+        .nav-item.active { color: var(--coffee-brown); }
+        .nav-item.active i { color: var(--health-green); }
+
+
+        /* --- Component Styles --- */
+        .card {
+            background: #fff; border-radius: var(--card-radius); box-shadow: var(--card-shadow); 
+            padding: 16px; display: grid; gap: 12px; 
+        }
+        .card-header { display: flex; align-items: center; gap: 8px; font-weight: 600; color: var(--text-muted); }
+        .icon {
+            width: 32px; height: 32px; border-radius: 8px; display: grid; 
+            place-items: center; font-size: 1rem; background: rgba(75, 46, 24, 0.08); 
+        }
+        .progress {
+            height: 14px; border-radius: 10px; background: rgba(76, 175, 80, 0.18); 
+            position: relative; 
+        }
+        .progress::after {
+            content: ''; position: absolute; top: 0; left: 0; bottom: 0;
+            width: var(--caffeine-percent); border-radius: inherit; 
+            /* Gradien disesuaikan agar transisi warnanya lebih terlihat di tengah */
+            background: linear-gradient(90deg, var(--health-green) 0%, var(--alert-yellow) 60%, var(--risk-red) 100%);
+            transition: width 0.5s ease-out, background 0.5s ease-out; /* Tambahkan transisi background */
+        }
+        .health-ring {
+            width: 120px; height: 120px; border-radius: 50%;
+            /* Background disesuaikan oleh JS */
+            background: conic-gradient(var(--alert-yellow) 0% 0%, rgba(0, 0, 0, 0.08) 0% 100%);
+            display: grid; place-items: center; margin: 0 auto; transition: background 0.5s ease-out; 
+        }
+        .health-ring span { display: block; text-align: center; font-size: 0.9rem; font-weight: 600; color: var(--coffee-brown); }
+        .health-ring strong { display: block; font-size: 1.4rem; font-family: 'Poppins', sans-serif; }
+        .form-group label { 
+            display: block; margin-bottom: 4px; font-weight: 600; 
+            color: var(--coffee-brown); font-family: 'Poppins', sans-serif; font-size: 0.9rem; 
+        }
+        .form-group select, .form-group input[type="range"], .form-group button, .form-group input[type="text"], .form-group input[type="file"], .form-group input[type="number"] {
+            width: 100%; padding: 10px 14px; border-radius: 8px; 
+            border: 1px solid rgba(75, 46, 24, 0.15); background: var(--bg); 
+            font-size: 1rem; color: var(--text-dark); margin-bottom: 12px;
+        }
+        .form-group button { background: var(--health-green); color: #fff; font-weight: 700; cursor: pointer; border: none; }
+        .caffeine-info { padding: 8px; background: rgba(76, 175, 80, 0.12); border-radius: 6px; margin-top: 5px; font-size: 0.85rem; }
+
+        /* Weekly Chart Dinamis */
+        .weekly-chart {
+            height: 180px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, rgba(75, 46, 24, 0.15), rgba(242, 227, 206, 0.4));
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            align-items: end;
+            gap: 10px;
+            padding: 20px 10px 30px;
+        }
+        .chart-bar {
+            display: block;
+            min-height: 5px; /* Base height for visibility */
+            border-radius: 8px 8px 0 0; /* Ubah border-radius agar terlihat seperti batang */
+            background: rgba(76, 175, 80, 0.6);
+            position: relative;
+            transition: height 0.5s ease;
+        }
+        .chart-bar[data-risk="yellow"] { background: rgba(255, 193, 7, 0.7); }
+        .chart-bar[data-risk="red"] { background: rgba(244, 67, 54, 0.8); }
+        .chart-bar::after {
+            content: attr(data-day);
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.7rem;
+            color: var(--text-muted);
+        }
+        .chart-bar span {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.6rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            white-space: nowrap; /* Pastikan angka tidak terpotong */
+        }
+
+        /* Profil Section */
+        .profile-card { text-align: center; }
+        .profile-card img {
+            width: 80px; height: 80px; border-radius: 50%; object-fit: cover;
+            margin: 0 auto 10px auto; border: 3px solid var(--coffee-brown);
+            display: block;
+        }
+        /* Style untuk pemilih avatar */
+        #avatar-selector {
+            display: flex;
+            justify-content: space-around;
+            gap: 10px;
+            margin-top: 15px;
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid rgba(75, 46, 24, 0.1);
+            border-radius: 10px;
+        }
+        .avatar-option {
+            position: relative;
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 50%;
+            transition: border 0.2s;
+        }
+        .avatar-option img {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid transparent;
+            margin: 0;
+            transition: border 0.2s;
+        }
+        .avatar-option input[type="radio"] {
+            position: absolute;
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            margin: 0;
+            cursor: pointer;
+        }
+        .avatar-option input[type="radio"]:checked + img {
+            border-color: var(--health-green);
+            box-shadow: 0 0 0 3px var(--health-green);
+        }
+
+        /* Style untuk Prediksi Kesehatan Baru */
+        .prediction-warning {
+            padding: 12px;
+            background: var(--risk-red);
+            color: #fff;
+            border-radius: 10px;
+            font-weight: 700;
+            text-align: center;
+            margin-top: -10px; /* Tarik ke atas sedikit */
+        }
+
+        /* Style tambahan untuk Settings */
+        .settings-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(75, 46, 24, 0.05);
+        }
+        .settings-item:last-child {
+            border-bottom: none;
+        }
+        .settings-value {
+            font-weight: 600;
+            color: var(--health-green);
+        }
+        .list p {
+            padding: 4px 0;
+        }
+        
+    </style>
+</head>
+<body>
+
+    <div class="start-page" id="start-page">
+        <h1>Wake Up, Glow Up – With CoffeeWise</h1>
+        <p>Asisten kopi pintar untuk mood on, tubuh fit, energi full, semua di genggamanmu.</p>
+        <button id="get-started-btn">Get Started</button>
+    </div>
+
+    <div class="main-app" style="display: none;">
+        <div class="container">
+            <section id="home" class="page active">
+                <article>
+                    <h2 class="page-header">CoffeeWise Dashboard</h2>
+                </article>
+
+                <article class="card">
+                    <div class="card-header">
+                        <div class="icon" style="background: rgba(244, 67, 54, 0.15);">⚠️</div>
+                        <h3>Prediksi Kesehatan Kafein</h3>
+                    </div>
+                    <div id="prediction-output">
+                        <p>Total kafein harian saat ini: <strong id="pred-current-caffeine">0 mg</strong></p>
+                        <p>Waktu efektif kafein habis: <strong id="pred-half-life-end">T/A</strong></p>
+                    </div>
+                    <div id="caffeine-limit-warning" class="prediction-warning" style="display:none;">
+                        🚨 **Batas Kafein 400 mg Terlampaui!** Hentikan konsumsi kopi.
+                    </div>
+                </article>
+                
+                <article class="card">
+                    <div class="card-header">
+                        <div class="icon" style="background: rgba(76, 175, 80, 0.15);">📈</div>
+                        <h3>Asupan Kafein Harian</h3>
+                    </div>
+                    <h1 id="daily-caffeine-mg" style="font-size: 2.2rem;">0 mg</h1>
+                    <div class="progress" aria-hidden="true"></div>
+                    <p style="font-size: 0.85rem; color: var(--text-muted);">Batas Aman Harian: 400 mg</p>
+                </article>
+
+                <article class="card" style="text-align: center;">
+                    <div class="card-header">
+                        <div class="icon">🛡️</div>
+                        <h3>Skor Kesehatan Kopi Harian</h3>
+                    </div>
+                    <div class="health-ring" id="health-ring">
+                        <span><strong id="health-status">Sehat</strong><span id="health-caffeine">0 mg</span></span>
+                    </div>
+                    <p id="health-message" style="font-size: 0.85rem; color: var(--text-muted);">Anda berada di zona Sehat. Jaga terus konsumsi ini.</p>
+                </article>
+
+                <article class="card">
+                    <div class="card-header">
+                        <div class="icon" style="background: rgba(255, 193, 7, 0.15);">🧠</div>
+                        <h3>Rekomendasi Cepat</h3>
+                    </div>
+                    <div id="recommendation-output">
+                        <p>💡 Saatnya minum kopi pertama Anda!</p>
+                    </div>
+                </article>
+            </section>
+
+            <section id="add-coffee" class="page">
+                <h2 class="page-header">Tambah Kopi & Hitung Kafein</h2>
+                
+                <article class="card">
+                    <div class="card-header">
+                        <div class="icon">⚙️</div>
+                        <h3>Input Konsumsi Kopi</h3>
+                    </div>
+                    <div class="form-group">
+                        <label for="coffee-type">Jenis Minuman</label>
+                        <select id="coffee-type">
+                            <option value="62" data-name="Espresso (Single Shot)">Espresso (Single Shot) – 60–65 mg</option>
+                            <option value="125" data-name="Espresso (Double Shot)">Espresso (Double Shot) – 120–130 mg</option>
+                            <option value="100" data-name="Americano">Americano – 80–120 mg</option>
+                            <option value="72" data-name="Latte" selected>Latte – 65–80 mg</option>
+                            <option value="195" data-name="Cold Brew">Cold Brew – 150–240 mg</option>
+                            <option value="40" data-name="Kopi Sachet 3-in-1">Kopi Sachet 3-in-1 – 30–50 mg</option>
+                        </select>
+                    </div> 
+                    <div class="form-group">
+                        <label for="cup-size">Ukuran Gelas (<span id="cup-size-value">250</span> ml)</label>
+                        <input type="range" id="cup-size" min="150" max="500" step="50" value="250" />
+                        <div class="caffeine-info">Kafein terestimasi: <strong id="current-caffeine">72 mg</strong></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="add-ons">Tambahan (Gula/Syrup)</label>
+                        <select id="add-ons">
+                            <option value="32" data-calories="128" selected>Gula Sedang (32 gram)</option>
+                            <option value="10" data-calories="40">Gula Rendah (10 gram)</option>
+                            <option value="0" data-calories="0">Tanpa Tambahan (0 gram)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <button onclick="addCoffee()">Tambah Kopi ke Asupan Harian</button>
+                    </div>
+                </article>
+
+                <article class="card">
+                    <div class="card-header">
+                        <div class="icon">🕒</div>
+                        <h3>Rincian Konsumsi Terakhir</h3>
+                    </div>
+                    <div class="list">
+                        <p>✓ Jenis: <span id="output-jenis">T/A</span></p>
+                        <p>✓ Kafein: <span id="output-kafein">0 mg</span></p>
+                        <p>✓ Gula: <span id="output-gula">0 gram</span></p>
+                        <p>✓ Kalori: <span id="output-kalori">0 kcal</span></p>
+                        <p>✓ Estimasi 50% hilang: <strong id="half-life-output">T/A</strong></p>
+                    </div>
+                </article>
+            </section>
+
+            <section id="health-score" class="page">
+                <h2 class="page-header">Laporan & Insight Kesehatan</h2>
+
+                <article class="card">
+                    <div class="card-header">
+                        <div class="icon">📊</div>
+                        <h3>Weekly Coffee Report (Kafein)</h3>
+                    </div>
+                    <div class="weekly-chart" id="weekly-chart" role="img" aria-label="Grafik batang konsumsi kopi per hari">
+                    </div>
+                    <ul id="weekly-insights" style="font-size: 0.9rem; margin-top: 10px; list-style-type: '💡 '; padding: 10px 20px; line-height: 1.6;">
+                    </ul>
+                </article>
+                
+                <article class="card nutrition-card">
+                    <div class="card-header">
+                        <div class="icon">🍯</div>
+                        <h3>Sugar & Calories Warning</h3>
+                    </div>
+                    <p id="sugar-status" style="font-size: 0.9rem;">Konsumsi gula hari ini: **<span id="daily-sugar-gram">0</span> gram**. Target WHO: 25 gram.</p>
+                    <div id="sugar-alert" class="label" style="display: block; text-align: center; color: var(--health-green); font-weight: 700;">✅ Level Gula Aman</div>
+                </article>
+
+                <article class="card nutrition-card">
+                    <div class="card-header">
+                        <div class="icon">📝</div>
+                        <h3>Rekapan Konsumsi Hari Ini</h3>
+                    </div>
+                    <div id="daily-summary">
+                        <p>Belum ada kopi yang dicatat hari ini.</p>
+                    </div>
+                </article>
+            </section>
+
+            <section id="settings" class="page">
+                <h2 class="page-header">Pengaturan Preferensi</h2>
+
+                <article class="card profile-card">
+                    <div class="card-header" style="justify-content: center;">
+                        <div class="icon">👤</div>
+                        <h3>Profil Pengguna</h3>
+                    </div>
+                    <img id="profile-picture" src="https://i.pravatar.cc/150?img=68" alt="Foto Profil">
+                    <h4 id="display-user-name">Pengguna CoffeeWise</h4>
+                    <p id="display-user-info" style="font-size: 0.9rem; color: var(--text-muted);">Umur: N/A, Jenis Kelamin: N/A</p>
+
+                    
+                    <div class="form-group">
+                        <label for="input-user-name">Ganti Nama</label>
+                        <input type="text" id="input-user-name" placeholder="Masukkan nama Anda">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="input-user-age">Umur (Tahun)</label>
+                        <input type="number" id="input-user-age" placeholder="Masukkan umur Anda" min="15" max="99">
+                    </div>
+                    <div class="form-group">
+                        <label for="input-user-gender">Jenis Kelamin</label>
+                        <select id="input-user-gender">
+                            <option value="N/A">Pilih Jenis Kelamin</option>
+                            <option value="Pria">Pria</option>
+                            <option value="Wanita">Wanita</option>
+                        </select>
+                    </div>
+                                                 
+                    <label style="text-align: left; margin-bottom: 5px; font-weight: 600;">Pilih Avatar Default</label>
+                    <div id="avatar-selector">
+                    </div>
+                    
+                                                 <div class="form-group">
+                        <button onclick="updateProfile()">Simpan Profil</button>
+                    </div>
+                </article>
+                
+                <article class="card">
+                    <div class="card-header">
+                        <div class="icon">🎯</div>
+                        <h3>Batas & Target Kesehatan</h3>
+                    </div>
+                    <div class="list">
+                        <div class="settings-item">
+                            <strong>Batas Kafein Medis</strong>
+                            <span class="settings-value">400 mg</span>
+                        </div>
+                        <div class="settings-item">
+                            <strong>Target Gula Harian (WHO)</strong>
+                            <span class="settings-value">25 gram</span>
+                        </div>
+                    </div>
+                </article>
+            </section>
+        </div>
+
+        <footer class="footer-nav">
+            <div class="nav-item active" data-page="home"><i>🏠</i><span>Home</span></div>
+            <div class="nav-item" data-page="add-coffee"><i>☕</i><span>Add Coffee</span></div>
+            <div class="nav-item" data-page="health-score"><i>📈</i><span>Score</span></div>
+            <div class="nav-item" data-page="settings"><i>⚙️</i><span>Settings</span></div>
+        </footer>
+    </div>
+
+    <script>
+        // Data Kafein per Jenis Kopi (base untuk 250ml)
+        // Nilai di option adalah base caffeine per 250ml.
+        const SAFE_LIMIT = 400; // Batas aman kafein harian (mg)
+        const SUGAR_LIMIT = 25; // Batas aman gula harian (gram)
+        const HALF_LIFE_HOURS = 5; // Waktu paruh kafein rata-rata (jam)
+        const CALORIES_PER_GRAM_SUGAR = 4; // Kalori per gram gula
+
+        // *** AVATAR DEFAULT BARU ***
+        const DEFAULT_AVATARS = [
+            'https://i.pravatar.cc/150?img=1', 
+            'https://i.pravatar.cc/150?img=5', 
+            'https://i.pravatar.cc/150?img=9', 
+            'https://i.pravatar.cc/150?img=12',
+            'https://i.pravatar.cc/150?img=15',
+            'https://i.pravatar.cc/150?img=18'
+        ];
+
+
+        // Variabel Data Harian (Inisialisasi)
+        let totalCaffeineToday = 0;
+        let totalSugarToday = 0;
+        let lastCoffeeTime = null;
+        let dailyLog = []; // Daftar kopi yang diminum hari ini
+        let weeklyData = []; 
+        
+        // --- DOM Elements ---
+        const dailyCaffeineMg = document.getElementById('daily-caffeine-mg');
+        const healthStatus = document.getElementById('health-status');
+        const healthCaffeine = document.getElementById('health-caffeine');
+        const healthRing = document.getElementById('health-ring');
+        const healthMessage = document.getElementById('health-message');
+        const recommendationOutput = document.getElementById('recommendation-output');
+        const halfLifeOutput = document.getElementById('half-life-output');
+        const chartContainer = document.getElementById('weekly-chart');
+        const weeklyInsightsEl = document.getElementById('weekly-insights');
+        const dailySugarGram = document.getElementById('daily-sugar-gram');
+        const sugarAlert = document.getElementById('sugar-alert');
+        const dailySummary = document.getElementById('daily-summary');
+        const profilePictureEl = document.getElementById('profile-picture');
+        const displayNameEl = document.getElementById('display-user-name');
+        const displayUserInfoEl = document.getElementById('display-user-info');
+        const inputUserNameEl = document.getElementById('input-user-name');
+        const inputUserAgeEl = document.getElementById('input-user-age');
+        const inputUserGenderEl = document.getElementById('input-user-gender');
+        const avatarSelectorEl = document.getElementById('avatar-selector');
+        const predCurrentCaffeineEl = document.getElementById('pred-current-caffeine');
+        const predHalfLifeEndEl = document.getElementById('pred-half-life-end');
+        const caffeineLimitWarningEl = document.getElementById('caffeine-limit-warning');
+
+        // Elements for Add Coffee Section
+        const coffeeTypeSelect = document.getElementById('coffee-type');
+        const cupSizeRange = document.getElementById('cup-size');
+        const cupSizeValue = document.getElementById('cup-size-value');
+        const currentCaffeineEl = document.getElementById('current-caffeine');
+        const addOnsSelect = document.getElementById('add-ons');
+        const outputJenis = document.getElementById('output-jenis');
+        const outputKafein = document.getElementById('output-kafein');
+        const outputGula = document.getElementById('output-gula');
+        const outputKalori = document.getElementById('output-kalori');
+
+
+        // --- Fungsi Navigasi ---
+        function showPage(pageId) {
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            document.getElementById(pageId).classList.add('active');
+            document.querySelectorAll('.nav-item').forEach(nav => {
+                nav.classList.remove('active');
+                if (nav.getAttribute('data-page') === pageId) {
+                    nav.classList.add('active');
+                }
+            });
+            if (pageId === 'settings') {
+                loadProfile(); // Pastikan profil dimuat saat ke halaman Settings
+            }
+            if (pageId === 'health-score') {
+                loadDailyData(); // Pastikan data hari ini termuat sebelum kalkulasi mingguan
+                weeklyData = loadWeeklyData();
+                renderWeeklyChart(weeklyData);
+                updateSugarWarning();
+                renderDailySummary();
+            }
+        }
+
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('click', () => {
+                const pageId = item.getAttribute('data-page');
+                showPage(pageId);
+            });
+        });
+        
+        // --- Fungsi Halaman Awal ---
+        document.getElementById('get-started-btn').addEventListener('click', () => {
+            document.getElementById('start-page').classList.add('hidden');
+            document.querySelector('.main-app').style.display = 'block';
+            loadDataAndInit(); // Muat data setelah "Get Started"
+            showPage('home'); // Tampilkan halaman home setelah start
+        });
+
+        // --- Fungsi Penyimpanan Data (LocalStorage) ---
+        function getTodayKey() {
+            // Gunakan format YYYY-MM-DD sebagai kunci harian agar lebih konsisten
+            return new Date().toISOString().split('T')[0];
+        }
+
+        function loadDailyData() {
+            const todayKey = getTodayKey();
+            const data = localStorage.getItem(todayKey);
+            if (data) {
+                const parsed = JSON.parse(data);
+                totalCaffeineToday = parsed.totalCaffeine || 0;
+                totalSugarToday = parsed.totalSugar || 0;
+                dailyLog = parsed.log || [];
+                // Asumsikan lastCoffeeTime adalah waktu kopi terakhir di log
+                if (dailyLog.length > 0) {
+                    lastCoffeeTime = new Date(dailyLog[dailyLog.length - 1].time);
+                }
+            } else {
+                totalCaffeineToday = 0;
+                totalSugarToday = 0;
+                dailyLog = [];
+                lastCoffeeTime = null;
+            }
+        }
+
+        function saveDailyData() {
+            const todayKey = getTodayKey();
+            const data = {
+                totalCaffeine: totalCaffeineToday,
+                totalSugar: totalSugarToday,
+                log: dailyLog
+            };
+            localStorage.setItem(todayKey, JSON.stringify(data));
+            updateHomeDashboard(); // Panggil update dashboard setelah simpan
+        }
+
+        function loadWeeklyData() {
+            const days = ['Min', 'Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab'];
+            const initialData = [];
+            const today = new Date();
+
+            for (let i = 0; i < 7; i++) {
+                const date = new Date(today);
+                date.setDate(today.getDate() - (6 - i)); // Hitung tanggal 6 hari lalu sampai hari ini
+                const dayKey = date.toISOString().split('T')[0];
+                const dayIndex = date.getDay(); // 0 (Minggu) sampai 6 (Sabtu)
+
+                // Ambil data dari localStorage (atau variabel global jika hari ini)
+                let dailyData;
+                if (dayKey === getTodayKey()) { // Hari ini
+                    dailyData = { totalCaffeine: totalCaffeineToday, totalSugar: totalSugarToday };
+                } else {
+                    dailyData = JSON.parse(localStorage.getItem(dayKey) || '{"totalCaffeine": 0, "totalSugar": 0}');
+                }
+
+                initialData.push({
+                    day: days[dayIndex],
+                    caffeine: dailyData.totalCaffeine,
+                    sugar: dailyData.totalSugar
+                });
+            }
+
+            return initialData;
+        }
+
+        // --- Fungsi Profil Pengguna ---
+        function loadProfile() {
+            const profile = JSON.parse(localStorage.getItem('userProfile') || '{}');
+            const name = profile.name || 'Pengguna CoffeeWise';
+            const age = profile.age || 'N/A';
+            const gender = profile.gender || 'N/A';
+            const avatarUrl = profile.avatarUrl || DEFAULT_AVATARS[0];
+
+            displayNameEl.textContent = name;
+            displayUserInfoEl.textContent = `Umur: ${age}, Jenis Kelamin: ${gender}`;
+            profilePictureEl.src = avatarUrl;
+            
+            // Update input fields di settings
+            inputUserNameEl.value = name === 'Pengguna CoffeeWise' ? '' : name;
+            inputUserAgeEl.value = age === 'N/A' ? '' : age;
+            inputUserGenderEl.value = gender === 'N/A' ? 'N/A' : gender;
+            
+            // Render avatar options
+            renderAvatarSelector(avatarUrl);
+        }
+
+        function renderAvatarSelector(currentUrl) {
+            avatarSelectorEl.innerHTML = '';
+            DEFAULT_AVATARS.forEach(url => {
+                const checked = url === currentUrl ? 'checked' : '';
+                const optionHtml = `
+                    <label class="avatar-option">
+                        <input type="radio" name="avatar" value="${url}" onchange="updateProfilePreview()" ${checked}>
+                        <img src="${url}" alt="Avatar">
+                    </label>
+                `;
+                avatarSelectorEl.insertAdjacentHTML('beforeend', optionHtml);
+            });
+        }
+        
+        function updateProfilePreview() {
+            const selectedAvatar = document.querySelector('input[name="avatar"]:checked');
+            if (selectedAvatar) {
+                profilePictureEl.src = selectedAvatar.value;
+            }
+        }
+
+        function updateProfile() {
+            const name = inputUserNameEl.value.trim() || 'Pengguna CoffeeWise';
+            const age = inputUserAgeEl.value.trim() || 'N/A';
+            const gender = inputUserGenderEl.value;
+            const selectedAvatar = document.querySelector('input[name="avatar"]:checked');
+            const avatarUrl = selectedAvatar ? selectedAvatar.value : DEFAULT_AVATARS[0];
+
+            const profile = { name, age, gender, avatarUrl };
+            localStorage.setItem('userProfile', JSON.stringify(profile));
+            
+            loadProfile(); // Muat ulang untuk update tampilan
+            alert('Profil berhasil disimpan!');
+        }
+
+        // --- Fungsi Kalkulasi Kafein & Gula ---
+        function calculateCaffeine(caffeineBase, cupSize) {
+            // Asumsi rasio kafein linear terhadap ukuran gelas (base 250ml)
+            return Math.round(caffeineBase * (cupSize / 250));
+        }
+
+        function calculateCalories(sugarGram) {
+            return sugarGram * CALORIES_PER_GRAM_SUGAR;
+        }
+
+        function updateCalculatedCaffeine() {
+            const baseCaffeine = parseInt(coffeeTypeSelect.value);
+            const cupSize = parseInt(cupSizeRange.value);
+            const estimatedCaffeine = calculateCaffeine(baseCaffeine, cupSize);
+
+            cupSizeValue.textContent = cupSize;
+            currentCaffeineEl.textContent = `${estimatedCaffeine} mg`;
+        }
+
+        // Panggil saat halaman dimuat dan saat nilai input berubah
+        coffeeTypeSelect.addEventListener('change', updateCalculatedCaffeine);
+        cupSizeRange.addEventListener('input', updateCalculatedCaffeine);
+
+        // --- Fungsi Utama Penambahan Kopi ---
+        function addCoffee() {
+            const baseCaffeine = parseInt(coffeeTypeSelect.value);
+            const cupSize = parseInt(cupSizeRange.value);
+            const sugarGram = parseInt(addOnsSelect.value);
+            const coffeeName = coffeeTypeSelect.options[coffeeTypeSelect.selectedIndex].getAttribute('data-name');
+            const estimatedCaffeine = calculateCaffeine(baseCaffeine, cupSize);
+            const estimatedCalories = calculateCalories(sugarGram);
+            const now = new Date();
+
+            totalCaffeineToday += estimatedCaffeine;
+            totalSugarToday += sugarGram;
+            lastCoffeeTime = now;
+
+            const logEntry = {
+                type: coffeeName,
+                caffeine: estimatedCaffeine,
+                sugar: sugarGram,
+                calories: estimatedCalories,
+                time: now.toISOString()
+            };
+
+            dailyLog.push(logEntry);
+            saveDailyData(); // Simpan data harian
+
+            // Update output rincian konsumsi terakhir
+            outputJenis.textContent = coffeeName;
+            outputKafein.textContent = `${estimatedCaffeine} mg`;
+            outputGula.textContent = `${sugarGram} gram`;
+            outputKalori.textContent = `${estimatedCalories} kcal`;
+
+            // Update estimasi half-life
+            updateCaffeineHalfLife(now, estimatedCaffeine);
+
+            alert(`${coffeeName} (${estimatedCaffeine} mg Kafein) berhasil ditambahkan!`);
+        }
+
+        // --- Fungsi Update Dashboard ---
+        function updateHomeDashboard() {
+            // Update total kafein
+            dailyCaffeineMg.textContent = `${totalCaffeineToday} mg`;
+            
+            // Update Progress Bar
+            let percent = Math.min(100, (totalCaffeineToday / SAFE_LIMIT) * 100);
+            document.documentElement.style.setProperty('--caffeine-percent', `${percent}%`);
+            
+            // Update Health Ring
+            let ringColor, statusText, message;
+            if (totalCaffeineToday >= SAFE_LIMIT) {
+                ringColor = 'var(--risk-red)';
+                statusText = 'OVERDOSE!';
+                message = '⚠️ Batas kafein harian 400 mg **TELAH TERLAMPUI**. Efek samping mungkin terjadi.';
+                caffeineLimitWarningEl.style.display = 'block';
+            } else if (totalCaffeineToday >= SAFE_LIMIT * 0.75) {
+                ringColor = 'var(--alert-yellow)';
+                statusText = 'Waspada';
+                message = 'Mendekati batas aman. Pertimbangkan untuk berhenti minum kopi hari ini.';
+                caffeineLimitWarningEl.style.display = 'none';
+            } else if (totalCaffeineToday > 0) {
+                ringColor = 'var(--health-green)';
+                statusText = 'Sehat';
+                message = 'Anda berada di zona aman. Jaga terus konsumsi ini.';
+                caffeineLimitWarningEl.style.display = 'none';
+            } else {
+                ringColor = 'rgba(0, 0, 0, 0.08)';
+                statusText = 'N/A';
+                message = '💡 Saatnya minum kopi pertama Anda!';
+                caffeineLimitWarningEl.style.display = 'none';
+            }
+
+            const ringPercent = Math.min(100, totalCaffeineToday / SAFE_LIMIT * 100);
+            healthRing.style.background = `conic-gradient(${ringColor} 0% ${ringPercent}%, rgba(0, 0, 0, 0.08) ${ringPercent}% 100%)`;
+            healthStatus.textContent = statusText;
+            healthCaffeine.textContent = `${totalCaffeineToday} mg`;
+            healthMessage.textContent = message;
+            
+            // Update Prediction & Recommendation
+            updateCaffeinePrediction();
+            updateRecommendation(totalCaffeineToday, lastCoffeeTime);
+        }
+
+        function updateCaffeineHalfLife(coffeeTime, caffeineAmount) {
+            if (!coffeeTime) return;
+
+            // Hitung estimasi waktu sisa kafein efektif (waktu paruh)
+            const halfLifeEnd = new Date(coffeeTime.getTime() + (HALF_LIFE_HOURS * 3600000));
+            const endTimeStr = halfLifeEnd.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' });
+            
+            halfLifeOutput.textContent = endTimeStr;
+        }
+        
+        function updateCaffeinePrediction() {
+            // Sisa kafein di tubuh berdasarkan waktu paruh (simulasi sederhana)
+            if (dailyLog.length === 0) {
+                predCurrentCaffeineEl.textContent = '0 mg';
+                predHalfLifeEndEl.textContent = 'T/A';
+                return;
+            }
+
+            const now = new Date();
+            let predictedCaffeine = 0;
+            let lastEffectiveTime = null;
+
+            dailyLog.forEach(log => {
+                const logTime = new Date(log.time);
+                const timeDiffHours = (now - logTime) / 3600000;
+                
+                // Kafein di tubuh berkurang seiring waktu (eksponensial)
+                // Menggunakan waktu paruh: C(t) = C0 * (1/2)^(t / HALF_LIFE_HOURS)
+                if (timeDiffHours >= 0) {
+                    const remainingCaffeine = log.caffeine * Math.pow(0.5, timeDiffHours / HALF_LIFE_HOURS);
+                    predictedCaffeine += remainingCaffeine;
+
+                    // Hitung waktu di mana 90% kafein hilang (~3.32 kali waktu paruh)
+                    const effectiveEndTime = new Date(logTime.getTime() + (HALF_LIFE_HOURS * 3.32 * 3600000));
+                    if (!lastEffectiveTime || effectiveEndTime > lastEffectiveTime) {
+                        lastEffectiveTime = effectiveEndTime;
+                    }
+                } else {
+                    // Jika waktu log di masa depan (seharusnya tidak terjadi di log harian)
+                    predictedCaffeine += log.caffeine;
+                }
+            });
+
+            // Update Prediction Dashboard
+            predCurrentCaffeineEl.textContent = `${Math.round(predictedCaffeine)} mg`;
+            if (lastEffectiveTime) {
+                predHalfLifeEndEl.textContent = lastEffectiveTime.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' });
+            } else {
+                 predHalfLifeEndEl.textContent = 'T/A';
+            }
+        }
+
+        function updateRecommendation(caffeine, time) {
+            const currentHour = new Date().getHours();
+            
+            if (caffeine >= SAFE_LIMIT * 0.75) {
+                recommendationOutput.innerHTML = '<p style="color: var(--risk-red); font-weight: 600;">🚫 **STOP!** Anda sudah mendekati atau melebihi batas aman harian. Pilih air putih atau teh herbal.</p>';
+            } else if (caffeine === 0 && currentHour >= 8 && currentHour <= 10) {
+                 recommendationOutput.innerHTML = '<p>💡 Saatnya minum kopi pertama Anda untuk meningkatkan fokus pagi!</p>';
+            } else if (time && (new Date() - time) / 3600000 >= 3 && caffeine < SAFE_LIMIT * 0.75 && currentHour < 15) {
+                recommendationOutput.innerHTML = '<p>☕️ Efek kopi terakhir Anda mulai menurun. Aman untuk minum satu porsi lagi.</p>';
+            } else if (currentHour >= 16) {
+                 recommendationOutput.innerHTML = '<p style="color: var(--alert-yellow); font-weight: 600;">🌙 Sudah sore! Pindah ke kopi atau minuman non-kafein untuk tidur yang lebih nyenyak.</p>';
+            } else {
+                 recommendationOutput.innerHTML = '<p>👍 Kafein Anda stabil. Tetap terhidrasi dan nikmati hari Anda!</p>';
+            }
+        }
+        
+        // --- Fungsi Report dan Chart ---
+        function renderWeeklyChart(data) {
+            chartContainer.innerHTML = '';
+            const maxCaffeine = Math.max(...data.map(d => d.caffeine), SAFE_LIMIT);
+            const chartHeight = 150; // Tinggi maksimal batang chart dalam px
+
+            data.forEach(item => {
+                const heightPercent = (item.caffeine / maxCaffeine) * chartHeight;
+                let risk = 'green';
+                if (item.caffeine > SAFE_LIMIT * 0.75) risk = 'red';
+                else if (item.caffeine > SAFE_LIMIT * 0.5) risk = 'yellow';
+                
+                const barHtml = `
+                    <div class="chart-bar" 
+                        style="height: ${Math.max(5, heightPercent)}px;" 
+                        data-day="${item.day}" 
+                        data-risk="${risk}">
+                        <span>${item.caffeine}</span>
+                    </div>
+                `;
+                chartContainer.insertAdjacentHTML('beforeend', barHtml);
+            });
+            renderWeeklyInsights(data);
+        }
+
+        function renderWeeklyInsights(data) {
+            weeklyInsightsEl.innerHTML = '';
+            const avgCaffeine = data.reduce((sum, item) => sum + item.caffeine, 0) / data.length;
+            const exceededDays = data.filter(item => item.caffeine > SAFE_LIMIT).length;
+            const maxDay = data.reduce((max, item) => (item.caffeine > max.caffeine ? item : max), {caffeine: -1});
+
+            let insights = [];
+            if (exceededDays > 0) {
+                insights.push(`Anda melebihi batas aman **${SAFE_LIMIT} mg** pada **${exceededDays}** hari minggu ini. Perlu penyesuaian!`);
+            }
+            insights.push(`Rata-rata kafein mingguan Anda adalah **${Math.round(avgCaffeine)} mg**.`);
+            if (maxDay.caffeine > 0) {
+                 insights.push(`Hari dengan konsumsi tertinggi adalah **${maxDay.day}** dengan ${maxDay.caffeine} mg.`);
+            }
+            if (avgCaffeine < SAFE_LIMIT * 0.2) {
+                 insights.push(`Konsumsi kafein Anda sangat rendah. Pastikan Anda mendapatkan dorongan energi yang cukup jika diperlukan.`);
+            }
+
+            insights.forEach(insight => {
+                weeklyInsightsEl.insertAdjacentHTML('beforeend', `<li>${insight}</li>`);
+            });
+        }
+        
+        function updateSugarWarning() {
+            dailySugarGram.textContent = totalSugarToday;
+            if (totalSugarToday > SUGAR_LIMIT) {
+                sugarAlert.textContent = '❌ Level Gula TINGGI!';
+                sugarAlert.style.color = 'var(--risk-red)';
+            } else if (totalSugarToday > SUGAR_LIMIT * 0.7) {
+                sugarAlert.textContent = '⚠️ Level Gula Waspada!';
+                sugarAlert.style.color = 'var(--alert-yellow)';
+            } else {
+                sugarAlert.textContent = '✅ Level Gula Aman';
+                sugarAlert.style.color = 'var(--health-green)';
+            }
+        }
+        
+        function renderDailySummary() {
+            if (dailyLog.length === 0) {
+                dailySummary.innerHTML = '<p>Belum ada kopi yang dicatat hari ini.</p>';
+                return;
+            }
+
+            let summaryHtml = '<ul style="list-style-type: disc; padding-left: 20px;">';
+            dailyLog.forEach(log => {
+                const timeStr = new Date(log.time).toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' });
+                summaryHtml += `
+                    <li style="margin-bottom: 8px;">
+                        <strong>${timeStr} - ${log.type}</strong><br>
+                        Kafein: ${log.caffeine} mg | Gula: ${log.sugar} g | Kalori: ${log.calories} kcal
+                    </li>
+                `;
+            });
+            summaryHtml += '</ul>';
+            dailySummary.innerHTML = summaryHtml;
+        }
+
+        // --- Inisialisasi Aplikasi ---
+        function loadDataAndInit() {
+            loadDailyData();
+            loadProfile();
+            updateCalculatedCaffeine(); // Update estimasi awal di 'Add Coffee'
+            updateHomeDashboard();
+        }
+
+        // Hanya load data dan tampilkan start screen saat pertama kali
+        document.addEventListener('DOMContentLoaded', () => {
+             // Cek apakah user sudah pernah "Get Started" sebelumnya (misal, punya data profil)
+            if (localStorage.getItem('userProfile')) {
+                document.getElementById('start-page').classList.add('hidden');
+                document.querySelector('.main-app').style.display = 'block';
+                loadDataAndInit();
+                showPage('home');
+            } else {
+                document.querySelector('.main-app').style.display = 'none';
+            }
+        });
+        
+    </script>
+</body>
+</html>
